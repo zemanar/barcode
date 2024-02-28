@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #7c5e5e;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 0 auto;
+    padding: 70px 0;
+}
+.hero-gif {
+    margin: 0 auto;
+}
+.hero-gif img {
+    width: 150px;
+    border-radius: 20px;
+}
+label {
+    color: #cebaba;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+div input {
+    padding: 7px;
+    background-color: #ebebeb70;
+    border-radius: 20px;
+    outline: none;
+}
+button {
+    border-radius: 20px;
+    outline: none;
+    padding: 7px;
+    margin-top: 10px;
+    font-weight: bold;
+}

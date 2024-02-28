@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RMS Login</title>
+    <link rel="stylesheet" href="styles/loginPage.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero-gif">
+        <img
+          src="https://i.pinimg.com/originals/96/f9/f0/96f9f0ee885fac98e47cf5ec8eb7c0f6.gif"
+          alt="GIF"
+        />
+      </div>
+      <label for="name">Username</label>
+      <input type="text" id="name" />
+      <label for="password">Password</label>
+      <input type="password" id="password" />
+      <button id="submitBtn">Submit</button>
+    </div>
+    <script>
+      const submitBtn = document.getElementById("submitBtn");
+
+      const users = [
+        { name: "admin", password: "passw0rd" },
+        { name: "ZTH", password: "zth001" },
+        { name: "ZMN", password: "zmn002" },
+      ];
+
+      submitBtn.addEventListener("click", () => {
+        const username = document.getElementById("name").value;
+        const password = document.getElementById("password").value;
+
+        // Check if the entered username and password match any user in the array
+        const isValidUser = users.some(
+          (user) => user.name === username && user.password === password
+        );
+
+        if (isValidUser) {
+          window.location.href = "index.html";
+          // You can redirect to another page or perform other actions for a successful login
+        } else {
+          alert("Invalid username or password");
+          // You can display an error message or take other actions for unsuccessful login
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-font {
+    font-family: 'Gerogia', serif;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+.col {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col1, .col2 {
+   width: 100%;
+}
+
+.col2 h1 {
+    font-size: 14px;
+    letter-spacing: .03rem;
+    text-align: center;
+}
+.col2 img {
+    margin-top: 20px;
+}

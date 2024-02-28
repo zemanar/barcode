@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RMS Admin</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container d-flex justify-content-end margin mt-4">
+        <input type="text" id="img-id" />
+        <button class="mr-3" id="submitBtn">Submit</button>
+        <button
+          style="font-size: 18px"
+          onclick="user_print()"
+          class="btn-primary"
+        >
+          Print
+        </button>
+      </div>
+
+      <div id="form_print">
+        <div class="barcode-container">
+          <div style="width: 100%">
+            <p
+              style="text-align: center; font-weight: bold; line-height: normal"
+            >
+              CI စာအုပ်ထုတ်ပေးရေးစခန်း ( Songkhla )<br />
+              CI လျှောက်ထားသူ၏ ကိုယ်ရေးအချက်အလက်ပုံစံ
+            </p>
+          </div>
+          <div style="text-align: left">
+            <img src="" id="qr-img" alt="Barcode" />
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+
+    <script>
+      const submitBtn = document.getElementById("submitBtn");
+      const qrImg = document.getElementById("qr-img");
+      const imgUrl = document.getElementById("img-id");
+
+      submitBtn.addEventListener("click", () => {
+        qrImg.src = `https://rms.gov.mm/media/barcode_images/${imgUrl.value}.svg`;
+      });
+
+      function user_print() {
+        const container = document.getElementById("form_print");
+        const content = container.innerHTML;
+
+        const printWindow = window.open("", "_blank");
+        printWindow.document.write(
+          '<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Printed Content</title>'
+        );
+        printWindow.document.write("<style>");
+        printWindow.document.write(
+          "@media print { .barcode-container { page-break-before: always; } }"
+        ); // Page break before each barcode
+        printWindow.document.write("u {");
+        printWindow.document.write(
+          "text-decoration: none;"
+        ); /* Remove default underline */
+        printWindow.document.write(
+          "position: relative;"
+        ); /* Make it a positioned element */
+        printWindow.document.write("}");
+        printWindow.document.write("u::after {");
+        printWindow.document.write(
+          'content: "";'
+        ); /* Add a pseudo-element for underline */
+        printWindow.document.write("position: absolute;");
+        printWindow.document.write("left: 0;");
+        printWindow.document.write(
+          "bottom: -8px;"
+        ); /* Adjust to align with text baseline */
+        printWindow.document.write("width: 100%;");
+        printWindow.document.write(
+          "height: 1px;"
+        ); /* Adjust underline thickness */
+        printWindow.document.write(
+          "background: linear-gradient(to right, black 20%, transparent 20%);"
+        );
+        printWindow.document.write(
+          "background-size: 4px 1px;"
+        ); /* Adjust the size of dots */
+        printWindow.document.write("}");
+        printWindow.document.write("</style>");
+        printWindow.document.write(
+          '</head><body style="font-size: 12px; margin: 0; padding: 0;"><div style="width:100%;">'
+        );
+        printWindow.document.write(content);
+        printWindow.document.write("</div></body></html>");
+        printWindow.document.close();
+        printWindow.print();
+        printWindow.onafterprint = function () {
+          printWindow.close();
+        };
+        // Reload the current page to refresh the barcode value
+        window.location.reload();
+      }
+    </script>
+  </body>
+</html>
